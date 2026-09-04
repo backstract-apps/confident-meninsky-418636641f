@@ -2,6 +2,7 @@ psycopg2-binary
 pathlib
 clerk_backend_api
 fastapi_mcp
+mcp<2.0.0
 sqlalchemy
 sqlalchemy-libsql
 pymysql
