@@ -11,7 +11,7 @@ metadata:
     backstract.io/token-scope: "storage.*,cache.*"
 type: Opaque
 stringData:
-  token: "PLACEHOLDER_BST_TOKEN_REPLACE_AT_RUNTIME"
+  token: "bst_eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJiYWNrc3RyYWN0LXBsYXRmb3JtIiwic3ViIjoiY29sbF9lMmI2OWJhMDkyYjI0Y2FiYjVhNDJkM2NiZjA3MzY3NiIsImF1ZCI6ImJhY2tzdHJhY3QtcmVzb3VyY2VzIiwiZW52IjoicmVsZWFzZSIsImlhdCI6MTc4ODUzMTQyNywiZXhwIjoxNzk2MzA3NDI3LCJzY29wZXMiOlsic3RvcmFnZS4qIiwiY2FjaGUuKiJdLCJ0b2tlbl90eXBlIjoiYnN0Iiwib3duZXJfaWQiOiI5ZjdkMzAxZGFmZjc0NDBjOTc1ZmUzNTQ2MTg5OTI1NCJ9.NG09CJKqAMtadID1qsprlXPDkbUbeB_sSF76PdcY2g8"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,9 +34,6 @@ spec:
         release: prometheus
     spec:
       #runtimeClassName: gvisor
-      #imagePullSecrets:
-        #- name: aws-ecr-creds
-      serviceAccountName: alloy-service-account
       volumes:
         - name: alloy-config
           configMap:
