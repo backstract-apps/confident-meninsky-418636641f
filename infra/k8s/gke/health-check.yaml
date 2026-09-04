@@ -1,0 +1,16 @@
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  name: confident-meninsky-418636641f-hc
+  namespace: apps-release
+spec:
+  default:
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: 7070
+        requestPath: /docs
+  targetRef:
+    group: ""
+    kind: Service
+    name: confident-meninsky-418636641f-srv

@@ -1,0 +1,24 @@
+kind: HTTPScaledObject
+apiVersion: http.keda.sh/v1alpha1
+metadata:
+  name: confident-meninsky-418636641f-scaler
+  namespace: apps-release
+spec:
+  hosts:
+    - cc1fbde45ead-in-south-01.mayson.dev
+  pathPrefixes:
+    - /us-east-2-backstractelb-f2161f-coll-e2b69ba092b24cabb5a42d3cbf073676/ # e.g. /infallible-naveen-... confident-meninsky-418636641f/
+  scaleTargetRef:
+    name: confident-meninsky-418636641f-depl
+    kind: Deployment
+    apiVersion: apps/v1
+    service: confident-meninsky-418636641f-srv # e.g. coll-8a2a...-srv
+    port: 80
+  replicas:
+    min: 0
+    max: 10
+  scaledownPeriod: 1800 #inseconds
+  scalingMetric:
+    requestRate:
+      targetValue: 100
+      window: 1m
