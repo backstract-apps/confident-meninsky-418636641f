@@ -52,7 +52,7 @@ spec:
                   fieldPath: metadata.annotations
       containers:
         - name: confident-meninsky-418636641f
-          image: asia-south2-docker.pkg.dev/platform-test-487912/backstract-apps/backstract_apps:confident-meninsky-418636641f
+          image: asia-south2-docker.pkg.dev/platform-test-487912/backstract-apps/backstract_apps:32f46a96808ff9a9d8f438334cc7b5ab13e98407
           imagePullPolicy: Always
           env:
             - name: BACKSTRACT_AUTH_TOKEN
