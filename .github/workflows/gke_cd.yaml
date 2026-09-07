@@ -248,9 +248,11 @@ jobs:
             "s|${ECR_IMAGE_PREFIX}|${GAR_REGISTRY}|g" \
             /tmp/clean_deployment.yaml
 
-          # Ensure the deployment references the GAR image
+          # TEST CHANGE: deploy via immutable GITHUB_SHA instead of the
+          # mutable STATIC_TAG, so Kubernetes always sees a real diff
+          # and always performs a real rollout.
           sed -i \
-            "s|image: .*confident-meninsky-418636641f.*|image: ${GAR_REGISTRY}:${STATIC_TAG}|g" \
+            "s|image: .*confident-meninsky-418636641f.*|image: ${GAR_REGISTRY}:${GITHUB_SHA}|g" \
             /tmp/clean_deployment.yaml
 
           if grep -q "PLACEHOLDER_BST_TOKEN_REPLACE_AT_RUNTIME" \
@@ -320,10 +322,11 @@ jobs:
 
           echo "Triggering Argo CD..."
 
+          # TEST CHANGE: -k removed to actually verify the TLS
+          # certificate rather than blindly trusting anything presented.
           curl \
             --fail-with-body \
             -X POST \
-            -k \
             https://argocd.backstract.io/api/webhook \
             -H "Content-Type: application/json" \
             -H "X-GitHub-Event: push" \
