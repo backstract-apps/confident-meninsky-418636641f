@@ -22,7 +22,7 @@ metadata:
     app: confident-meninsky-418636641f
     release: prometheus
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: confident-meninsky-418636641f
